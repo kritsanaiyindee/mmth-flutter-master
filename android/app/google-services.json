@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "981306431934",
+    "project_id": "mmth-chat",
+    "storage_bucket": "mmth-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981306431934:android:222518c9b1479b5e5641ef",
+        "android_client_info": {
+          "package_name": "com.mmth.mmth_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981306431934-2gjte1t40r9i5nkk58m7hiu65sb2tdp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkM22TymD0s2ocpecJgBWvyfH_dXFoOmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981306431934-2gjte1t40r9i5nkk58m7hiu65sb2tdp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
