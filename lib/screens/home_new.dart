@@ -58,9 +58,12 @@ class _HomeMitsuState extends State<HomeMitsu> {
         //backgroundColor: Color.fromRGBO(245, 246, 252,1),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
+
           child: Container(
             //padding: EdgeInsets.only(top: 60,left: 30),
+            color:ArgonColors.white,
             child: Column(
+
               children: <Widget>[
                 Container(
 
@@ -88,7 +91,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                         ],
                       ),
                       Expanded(child: Container()),
-
+                      /*
                       Padding(padding: EdgeInsets.only(right: 20.0,bottom:22.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,6 +110,8 @@ class _HomeMitsuState extends State<HomeMitsu> {
                           ],
                         ),
                       )
+
+                       */
 
                     ],
                   ),
@@ -142,9 +147,9 @@ class _HomeMitsuState extends State<HomeMitsu> {
                 ),
                 Container(
                   //width: 300,
-                    color:ArgonColors.nearWhite,
+                    color:ArgonColors.white,
                     height: 100,
-                    margin: EdgeInsets.only(top: 0),
+                    margin: EdgeInsets.only(top: 20,bottom: 20),
 
                     child: ListView(
 
@@ -156,11 +161,11 @@ class _HomeMitsuState extends State<HomeMitsu> {
                         //CASE Management
                         Container(
                             height: 153,
-                            width: 135,
+                            width: 100,
                             margin: EdgeInsets.only(right: 1,left: 20),
                             padding: EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                               boxShadow: [BoxShadow(color: Color.fromRGBO(50, 132, 239, .16),offset: Offset(0, 5),blurRadius: 16)],
                               //color: ArgonColors.red_mitsu,
                               gradient: LinearGradient(
@@ -218,7 +223,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                         //CASE LIST
                         Container(
                             height: 153,
-                            width: 135,
+                            width: 100,
                             margin: EdgeInsets.only(right: 5,left: 5),
                             padding: EdgeInsets.all(12),
                             decoration: BoxDecoration(
@@ -277,10 +282,10 @@ class _HomeMitsuState extends State<HomeMitsu> {
                             )
                         ),
 
-                        //Meeting
+                        //RO
                         Container(
                             height: 153,
-                            width: 135,
+                            width: 100,
                             margin: EdgeInsets.only(right: 5,left: 5),
                             padding: EdgeInsets.all(12),
                             decoration: BoxDecoration(
@@ -304,7 +309,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                                         child:Icon(Icons.subject,size:50,color: ArgonColors.bgColorScreen,)// Image.asset("assets/img/airconditioner.png"),
                                     ),
 
-                                    Text("Meeting",
+                                    Text("RO",
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.white
@@ -342,10 +347,34 @@ class _HomeMitsuState extends State<HomeMitsu> {
                       ],
                     )
                 ),
-
                 Container(
-                  height: 216,
-
+                  padding: EdgeInsets.only(top: 20,right: 30.0,left: 30,bottom:15),
+                  color:ArgonColors.nearWhite,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Icon(Icons.library_add_check,size:30,color: ArgonColors.red_mitsu,),
+                      Text("ยอดรวม",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black
+                        ),
+                      ),
+                       InkWell(
+                        onTap: (){},
+                        child: Text("See All",
+                          style: TextStyle(
+                              color: Color.fromRGBO(26, 141, 255,1),
+                              fontSize: 16
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 150,
+                  //color:Colors.red,
                   margin: EdgeInsets.only(right: 20.0,top: 20.0,left: 30),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
@@ -363,7 +392,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text("Evening Mode ON",
+                            Text("ผลรวม",
                               style: TextStyle(
                                   color: Color.fromRGBO(0,0,0,1),
                                   fontSize: 16
@@ -374,7 +403,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                               children: <Widget>[
                                 //1
                                 Container(
-                                  height: 58,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -386,7 +415,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                                         ),
                                       ),
                                       Spacer(),
-                                      Text("Garden lights",
+                                      Text("่รอดำเนินการ",
                                         style: TextStyle(
                                             fontSize: 12,
                                             color: Color.fromRGBO(0,0,0,.5)
@@ -405,7 +434,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
 
                                 //2
                                 Container(
-                                  height: 58,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -417,7 +446,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                                         ),
                                       ),
                                       Spacer(),
-                                      Text("Cordial light",
+                                      Text("เสร็จแล้ว",
                                         style: TextStyle(
                                             fontSize: 12,
                                             color: Color.fromRGBO(0,0,0,.5)
@@ -436,7 +465,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
 
                                 //3
                                 Container(
-                                  height: 58,
+                                  height: 60,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -448,7 +477,7 @@ class _HomeMitsuState extends State<HomeMitsu> {
                                         ),
                                       ),
                                       Spacer(),
-                                      Text("Hall Lights",
+                                      Text("ยกเลิก",
                                         style: TextStyle(
                                             fontSize: 12,
                                             color: Color.fromRGBO(0,0,0,.5)
