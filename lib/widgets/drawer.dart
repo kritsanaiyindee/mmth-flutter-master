@@ -63,6 +63,15 @@ class ArgonDrawer extends StatelessWidget {
                   title: "Create Case",
                   isSelected: currentPage == "Create Case" ? true : false),
               DrawerTile(
+                  icon: Icons.accessibility_new,
+                  onTap: () {
+                    if (currentPage != "Dashboard")
+                      Navigator.pushReplacementNamed(context, '/dashboard2');
+                  },
+                  iconColor: ArgonColors.primary,
+                  title: "Dashboard",
+                  isSelected: currentPage == "Dashboard" ? true : false),
+              DrawerTile(
                   icon: Icons.pie_chart,
                   onTap: () {
                     if (currentPage != "Create RO")

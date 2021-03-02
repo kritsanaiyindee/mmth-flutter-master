@@ -97,8 +97,9 @@ class _LoginMitsu2State extends State<LoginMitsu2> {
 
                 ),
               ),
+
               ClipPath(
-                clipper: WaveClipper3(),
+                //clipper: WaveClipper3(),
                 child: Container(
                   child: Column(),
                   width: double.infinity,
@@ -109,7 +110,7 @@ class _LoginMitsu2State extends State<LoginMitsu2> {
                 ),
               ),
               ClipPath(
-                clipper: WaveClipper1(),
+                //clipper: WaveClipper1(),
                 child: Container(
                   child: Column(
                     children: <Widget>[

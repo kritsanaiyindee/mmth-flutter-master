@@ -3,6 +3,8 @@ import 'package:mmth_flutter/screens/AllChatsPage.dart';
 import 'package:mmth_flutter/screens/ChatModel.dart';
 import 'package:mmth_flutter/screens/FauxLoginPage.dart';
 import 'package:mmth_flutter/screens/chat_screen.dart';
+import 'package:mmth_flutter/screens/dash1.dart';
+import 'package:mmth_flutter/screens/dash2.dart';
 import 'package:mmth_flutter/screens/list_ro.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:mmth_flutter/screens/login_mitsu.dart';
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
               "/onboarding": (BuildContext context) => new Onboarding(),
               "/home": (BuildContext context) => new HomeMitsu(),
               "/createcase": (BuildContext context) => new TextFormFieldDemo(),
+              "/dashboard2": (BuildContext context) => new DashboardOnePage(),
               "/createro": (BuildContext context) => new ROCreate(),
               "/profile": (BuildContext context) => new Profile(),
               "/listro": (BuildContext context) => new RoList(),
