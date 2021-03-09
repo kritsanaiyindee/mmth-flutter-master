@@ -35,4 +35,8 @@ class ArgonColors {
 
   static const Color text = Color.fromRGBO(50, 50, 93, 1.0);
   static const Color red_mitsu = Color.fromRGBO(231, 0, 18, 1.0);
+  static const Color red_mitsu2 = Color.fromRGBO(237, 16, 24, 0.8);
+  static const Color black_mitsu = Color.fromRGBO(0, 0, 0, 1.0);
+
+
 }

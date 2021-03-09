@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mmth_flutter/service/user_list.dart';
 import 'package:flutter/material.dart';
 import 'package:mmth_flutter/constants/Theme.dart';
@@ -73,7 +74,7 @@ class _CaseListState extends State<CaseList> {
   Widget build(BuildContext context) {
     const sizedBoxSpace = SizedBox(height: 24);
     return Scaffold(
-        extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: false,
         appBar: Navbar(
           title: "CaseList",
           transparent: false,
@@ -83,7 +84,7 @@ class _CaseListState extends State<CaseList> {
         body:
 
         Container(
-          padding: EdgeInsets.only(top: 79.0, right: 24.0),
+          padding: EdgeInsets.only(top: 1.0, right: 24.0),
           child: FutureBuilder<List<dynamic>>(
             future: fetchUsers(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -122,7 +123,7 @@ class _CaseListState extends State<CaseList> {
 
         bottomNavigationBar: FancyBottomNavigation(
           tabs: [
-            TabData(iconData: Icons.add, title: "Home"),
+            TabData(iconData: FontAwesomeIcons.search, title: "Home"),
             TabData(iconData: Icons.search, title: "Search"),
             TabData(iconData: Icons.save, title: "Basket"),
             TabData(iconData: Icons.navigate_before, title: "Basket"),

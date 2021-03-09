@@ -141,7 +141,7 @@ class ROCreateFormState extends State<ROCreateForm> {
   GlobalKey<FormFieldState<String>>();
   final _UsNumberTextInputFormatter _phoneNumberFormatter =
   _UsNumberTextInputFormatter();
-  var returndata = 0; //variable for return data
+
 
   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
 
@@ -252,14 +252,7 @@ class ROCreateFormState extends State<ROCreateForm> {
   @override
   Widget build(BuildContext context) {
     const sizedBoxSpace = SizedBox(height: 16);
-    //ScopedModel.of<ChatModel>(context, rebuildOnChange: false).init();
-    //print('_selectedIndex==%_selectedIndex');
-    print(_selectedIndex);
-    setState(() {
-      print('setState');
-     // _selectedIndex = 0;
-      print(_selectedIndex);
-    });
+    ScopedModel.of<ChatModel>(context, rebuildOnChange: false).init();
     return
 
 
@@ -1038,61 +1031,38 @@ class ROCreateFormState extends State<ROCreateForm> {
             ),
           ),
 
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: onTabTapped, // new
-            //initialSelection: 0,
-            backgroundColor: ArgonColors.black_mitsu,
-            unselectedItemColor: Colors.green,
-            selectedItemColor: Colors.yellow,
-            currentIndex: _selectedIndex, //
-            items: [
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.add,color: ArgonColors.red_mitsu2,),
-                title: Text('RO Detail'),
-              ),
-              new BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.pen,color: ArgonColors.red_mitsu2,),
-                title: Text('Messages'),
-              ),
-              new BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.star,color: ArgonColors.red_mitsu2,),
-                  title: Text('Profile')
-              ),
-              new BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.rocketchat,color: ArgonColors.red_mitsu2,),
-                  title: Text('Chat')
-              )
+          bottomNavigationBar: FancyBottomNavigation(
+            tabs: [
+              TabData(iconData: Icons.add, title: "RO Detail"),
+              TabData(iconData: FontAwesomeIcons.pen, title: "Case"),
+              TabData(iconData: FontAwesomeIcons.star, title: "Rating"),
+              TabData(iconData: FontAwesomeIcons.rocketchat, title: "Chat")
             ],
-
-          ),
-           /* barBackgroundColor: ArgonColors.black,
+            onTabChangedListener: (position) {
+              setState(() {
+                print(position);
+                _selectedIndex = position;
+              });
+              if(_selectedIndex==2){
+                Navigator.pushNamed(context, 'page2');
+              //  Navigator.pushReplacementNamed(context, '/rating');
+                //_navigateAndDisplayRating(context);
+              }else if(_selectedIndex==3){
+               // Navigator.pushReplacementNamed(context, '/chat');
+                //_navigateAndDisplaySelection(context);
+                Widget page = Page2();
+                Navigator.pushNamed(context, 'page2');
+              }
+            },
+            barBackgroundColor: ArgonColors.black,
             activeIconColor: ArgonColors.red_mitsu,
             circleColor: Colors.white,
             textColor: Colors.white,
-          )*/
+          )
       );
 
   }
-  void onTabTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-  _navigateAndDisplaySelection(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Page1()),
-    );
-    setState(() {
-      //print(position);
-      _selectedIndex = 0;
-    });
-    // After the Selection Screen returns a result, hide any previous snackbars
-    // and show the new result.
-    //ScaffoldMessenger.of(context)
-      //..removeCurrentSnackBar()
-      //..showSnackBar(SnackBar(content: Text("$result")));
-  }
+
 
   Widget buildSingleMessage(Message message) {
     return Container(
@@ -1280,37 +1250,15 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("Stateless Page"),
-        backgroundColor: Colors.redAccent,),
-      body: WillPopScope( //WillPopScope will replace the default
-        //"Mobile Back Button" and "Appbar Back button" action
-          onWillPop: (){
-            //on Back button press, you can use WillPopScope for another purpose also.
-            Navigator.pop(context,0); //return data along with pop
-            return new Future(() => false); //onWillPop is Future<bool> so return false
-          },
-          child: Container(
-              height:300,
-              child: Center(
-                  child: RaisedButton(
-                    onPressed: (){
-                      Navigator.pop(context, "Raised Button data");
-                      //go back along with data
-                    },
-                    child: Text("Go Back"),
-                  )
-              )
-          )
+      appBar: AppBar(title: Text('Page1')),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () => Navigator.pushNamed(context, 'page2'),
+          child: Text('Go to Page2'),
+        ),
       ),
     );
   }
-
-  void _onBackPressed() {
-    // Called when the user either presses the back arrow in the AppBar or
-    // the dedicated back button.
-  }
-
-
 }
 class Page2 extends StatelessWidget {
   @override

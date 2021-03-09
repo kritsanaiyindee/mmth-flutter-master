@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:mmth_flutter/constants/Theme.dart';
+import 'package:mmth_flutter/widgets/drawer.dart';
+import 'package:mmth_flutter/widgets/navbar.dart';
 
 class DashboardOnePage extends StatelessWidget {
   static final String path = "lib/src/pages/dashboard/dash1.dart";
@@ -16,8 +19,15 @@ class DashboardOnePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).buttonColor,
-      appBar: _buildAppBar(context),
+      extendBodyBehindAppBar: false,
+
+      appBar: Navbar(
+        title: "Dashboard",
+        transparent: false,
+
+      ),
+      backgroundColor: ArgonColors.bgColorScreen,
+      drawer: ArgonDrawer(currentPage: "Dashboard"),
       body: _buildBody(context),
     );
   }
@@ -28,10 +38,10 @@ class DashboardOnePage extends StatelessWidget {
         _buildStats(),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: _buildTitledContainer("Sales",
+            padding: const EdgeInsets.all(12.0),
+            child: _buildTitledContainer("Case Summary",
                 child: Container(
-                    height: 200, child: DonutPieChart.withSampleData())),
+                    height: 170, child: DonutPieChart.withSampleData())),
           ),
         ),
         _buildActivities(context),
@@ -54,17 +64,25 @@ class DashboardOnePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Colors.blue,
+              //color: ArgonColors.red_mitsu,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  ArgonColors.red_mitsu,
+                  ArgonColors.red_mitsu2,
+                ],
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "+500",
+                  "12",
                   style: stats,
                 ),
                 const SizedBox(height: 5.0),
-                Text("Leads".toUpperCase())
+                Text("CASE".toUpperCase())
               ],
             ),
           ),
@@ -72,17 +90,25 @@ class DashboardOnePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Colors.pink,
+              //color: Colors.pink,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  ArgonColors.red_mitsu,
+                  ArgonColors.red_mitsu2,
+                ],
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "+300",
+                  "10",
                   style: stats,
                 ),
                 const SizedBox(height: 5.0),
-                Text("Customers".toUpperCase())
+                Text("Completed".toUpperCase())
               ],
             ),
           ),
@@ -90,17 +116,25 @@ class DashboardOnePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Colors.green,
+              //color: Colors.green,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  ArgonColors.red_mitsu,
+                  ArgonColors.red_mitsu2,
+                ],
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "+1200",
+                  "2",
                   style: stats,
                 ),
                 const SizedBox(height: 5.0),
-                Text("Orders".toUpperCase())
+                Text("Pending".toUpperCase())
               ],
             ),
           ),
@@ -159,7 +193,7 @@ class DashboardOnePage extends StatelessWidget {
       sliver: SliverToBoxAdapter(
         child: _buildTitledContainer(
           "Activities",
-          height: 280,
+          height: 250,
           child: Expanded(
             child: GridView.count(
               physics: NeverScrollableScrollPhysics(),
@@ -170,7 +204,7 @@ class DashboardOnePage extends StatelessWidget {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 20,
-                          backgroundColor: Theme.of(context).buttonColor,
+                          backgroundColor: ArgonColors.red_mitsu,
                           child: activity.icon != null
                               ? Icon(
                                   activity.icon,
@@ -183,7 +217,7 @@ class DashboardOnePage extends StatelessWidget {
                           activity.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14.0),
+                              fontWeight: FontWeight.bold, fontSize: 14.0,color:ArgonColors.black_mitsu),
                         ),
                       ],
                     ),
@@ -242,21 +276,7 @@ class DashboardOnePage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-      titleSpacing: 0.0,
-      elevation: 0.5,
-      backgroundColor: Colors.white,
-      title: Text(
-        "Dashboard",
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
-        textAlign: TextAlign.center,
-      ),
-      actions: <Widget>[_buildAvatar(context)],
-    );
-  }
+
 
   Widget _buildAvatar(BuildContext context) {
     return IconButton(
@@ -272,19 +292,29 @@ class DashboardOnePage extends StatelessWidget {
 
   Container _buildTitledContainer(String title, {Widget child, double height}) {
     return Container(
+      //olor:ArgonColors.black,
       padding: const EdgeInsets.all(16.0),
       width: double.infinity,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.0),
+        color:  ArgonColors.nearWhite,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[
+            ArgonColors.nearWhite,
+            ArgonColors.white,
+          ],
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0,color:ArgonColors.black_mitsu),
+
           ),
           if (child != null) ...[const SizedBox(height: 10.0), child]
         ],
@@ -322,10 +352,10 @@ class DonutPieChart extends StatelessWidget {
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, String>> _createSampleData() {
     final data = [
-      new LinearSales("July", 100),
-      new LinearSales("August", 75),
-      new LinearSales("September", 25),
-      new LinearSales("October", 5),
+      new LinearSales("July", 5,charts.MaterialPalette.red.shadeDefault),
+      new LinearSales("August", 20, charts.MaterialPalette.black),
+      new LinearSales("September",20, charts.MaterialPalette.green.shadeDefault),
+      new LinearSales("October",15, charts.MaterialPalette.blue.shadeDefault),
     ];
 
     return [
@@ -333,6 +363,7 @@ class DonutPieChart extends StatelessWidget {
         id: 'Sales',
         domainFn: (LinearSales sales, _) => sales.month,
         measureFn: (LinearSales sales, _) => sales.sales,
+        colorFn: (LinearSales sales, _) => sales.color,
         data: data,
       )
     ];
@@ -343,8 +374,9 @@ class DonutPieChart extends StatelessWidget {
 class LinearSales {
   final String month;
   final int sales;
+  final charts.Color color;
 
-  LinearSales(this.month, this.sales);
+  LinearSales(this.month, this.sales, this.color);
 }
 
 class Activity {
@@ -354,10 +386,10 @@ class Activity {
 }
 
 final List<Activity> activities = [
-  Activity(title: "Results", icon: FontAwesomeIcons.listOl),
-  Activity(title: "Messages", icon: FontAwesomeIcons.sms),
+  Activity(title: "Summary", icon: FontAwesomeIcons.listOl),
+  Activity(title: "CRM CASE", icon: FontAwesomeIcons.search),
   Activity(title: "Appointments", icon: FontAwesomeIcons.calendarDay),
-  Activity(title: "Video Consultation", icon: FontAwesomeIcons.video),
-  Activity(title: "Summary", icon: FontAwesomeIcons.fileAlt),
-  Activity(title: "Billing", icon: FontAwesomeIcons.dollarSign),
+  Activity(title: "Score", icon: FontAwesomeIcons.star),
+  //Activity(title: "Summary", icon: FontAwesomeIcons.fileAlt),
+  //Activity(title: "Billing", icon: FontAwesomeIcons.dollarSign),
 ];

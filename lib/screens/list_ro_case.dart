@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mmth_flutter/constants/Theme.dart';
@@ -10,19 +11,19 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 
 
-class RoList extends StatefulWidget {
+class CaseROList extends StatefulWidget {
   @override
-  _RoListeState createState() => new _RoListeState();
+  _CaseListeState createState() => new _CaseListeState();
 }
 
-class _RoListeState extends State<RoList> {
+class _CaseListeState extends State<CaseROList> {
   TextEditingController searchController = new TextEditingController();
   SlidableController slidableController;
   final List<_HomeItem> items = List.generate(
     20,
         (i) => _HomeItem(
       i,
-      'RO00000001$i',
+      'CASE00000001$i',
       _getSubtitle(i),
       _getAvatarColor(i),
     ),
@@ -32,6 +33,7 @@ class _RoListeState extends State<RoList> {
   Future<Null> getUserDetails() async {
     final response = await http.get(url);
     final responseJson = json.decode(response.body);
+    print(response.body);
     _userDetails.clear();
     setState(() {
       for (Map user in responseJson) {
@@ -52,7 +54,7 @@ class _RoListeState extends State<RoList> {
     super.initState();
     _userDetails.clear();
     _searchResult.clear();
-    //getUserDetails();
+    getUserDetails();
   }
   Animation<double> _rotationAnimation;
   Color _fabColor = Colors.blue;
@@ -92,11 +94,12 @@ class _RoListeState extends State<RoList> {
                   title: new TextField(
                     controller: searchController,
                     decoration: new InputDecoration(
-                        hintText: 'Search  RO', border: InputBorder.none),
+                        hintText: 'Search  Case number', border: InputBorder.none),
                     //onChanged: onSearchTextChanged,
                   ),
                   trailing: new IconButton(icon: new Icon(Icons.subdirectory_arrow_left_outlined,color:Colors.green), onPressed: () {
                     //searchController.clear();
+                    print('Search');
                     getUserDetails();
                   },),
                 ),
@@ -224,21 +227,24 @@ class _RoListeState extends State<RoList> {
 
           child: Text('Create'),
         ),
+        */
 
-         */
         IconSlideAction(
-          caption: 'Create',
+          caption: 'Close Case',
           color: Colors.grey.shade200,
-          icon: Icons.add,
-          onTap: () => _showSnackBar(context, 'สร้างรายการ case'),
+          icon: FontAwesomeIcons.solidEnvelope,
+          onTap: () => {
+            //print('ปิดเคส');
+            _showSnackBar(context, 'ปิดเคส')
+          },
           closeOnTap: false,
         ),
-        /*IconSlideAction(
-          caption: 'Delete',
+        IconSlideAction(
+          caption: 'รายละเอียด',
           color: Colors.red,
-          icon: Icons.delete,
-          onTap: () => _showSnackBar(context, 'Delete'),
-        ),*/
+          icon:FontAwesomeIcons.info,
+          onTap: () => _showSnackBar(context, 'รายละเอียด'),
+        ),
       ],
     );
   }
@@ -386,7 +392,7 @@ class _RoListeState extends State<RoList> {
   }
 
   static Color _getAvatarColor(int index) {
-    switch (index % 4) {
+    switch (index % 1) {
       case 0:
         return Colors.red;
       case 1:
@@ -403,13 +409,13 @@ class _RoListeState extends State<RoList> {
   static String _getSubtitle(int index) {
     switch (index % 4) {
       case 0:
-        return 'รายละเอียด RO';
+        return 'รายละเอียด CASE';
       case 1:
-        return 'รายละเอียด RO';
+        return 'รายละเอียด CASE';
       case 2:
-        return 'รายละเอียด RO';
+        return 'รายละเอียด CASE';
       case 3:
-        return 'รายละเอียด RO';
+        return 'รายละเอียด CASE';
       default:
         return null;
     }

@@ -1,9 +1,7 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mmth_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:mmth_flutter/constants/Theme.dart';
-import 'package:mmth_flutter/widgets/fancy_buttom_bar.dart';
 import 'package:mmth_flutter/widgets/navbar.dart';
 import 'package:mmth_flutter/widgets/card-horizontal.dart';
 import 'package:mmth_flutter/widgets/card-small.dart';
@@ -11,7 +9,7 @@ import 'package:mmth_flutter/widgets/card-square.dart';
 import 'package:mmth_flutter/widgets/drawer.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class Rating2 extends StatefulWidget {
+class Rating extends StatefulWidget {
   static final String path = "lib/screens/login_mitsu.dart";
   @override
   _RatingState createState() => _RatingState();
@@ -19,12 +17,10 @@ class Rating2 extends StatefulWidget {
 
 
 
-class _RatingState extends State<Rating2> {
+class _RatingState extends State<Rating> {
   // final GlobalKey _scaffoldKey = new GlobalKey();
   final _ratingController = TextEditingController();
   double _rating;
-  double _rating2= 3.0;
-  double _rating3= 3.0;
   double _userRating = 3.0;
   int _ratingBarMode = 1;
   bool _isRTLMode = false;
@@ -35,126 +31,160 @@ class _RatingState extends State<Rating2> {
     _ratingController.text = '3.0';
     super.initState();
   }
-  int _selectedIndex = 0;
-  void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    switch(index){
-      case 0:
-        Navigator.pushNamed(context, "/home");
-        break;
-    //case 1:
-    //  Navigator.pushNamed(context, "/account");
-    //  break;
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
    // var data = EasyLocalizationProvider.of(context).data;
    // final lang = AppLocalizations.of(context);
 
-    const sizedBoxSpace = SizedBox(height: 16);
+
   return Scaffold(
-        appBar: AppBar(
-          title: Text("Create Case"),// "",
-          leading: BackButton(
-              color: Colors.white,
-              onPressed: () => Navigator.of(context),
-          ),
-          //searchBar: false,
+        appBar: Navbar(
+          title: "Home",
+          searchBar: false,
           //categoryOne: "Beauty",
           //categoryTwo: "Fashion",
         ),
        // backgroundColor: ArgonColors.bgColorScreen,
         // key: _scaffoldKey,
-       // drawer: ArgonDrawer(currentPage: "Home"),
+        drawer: ArgonDrawer(currentPage: "Home"),
 
-        //backgroundColor: Color.fromRGBO(245, 246, 252,1),
+        backgroundColor: Color.fromRGBO(245, 246, 252,1),
       body: Directionality(
         textDirection: _isRTLMode ? TextDirection.rtl : TextDirection.ltr,
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(10),
           child: Column(
-
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              if(_selectedIndex==0)SizedBox(
-                height: 20.0,
+              SizedBox(
+                height: 40.0,
               ),
-              if(_selectedIndex==0)_heading('ท่านพึงพอใจการให้คำแนะนำจากสายด่วนเทคนิค มากน้อยเพียงใด'),
-              if(_selectedIndex==0)_ratingBar(_ratingBarMode),
-              if(_selectedIndex==0)SizedBox(
+              _heading('ความพึงพอใจ 1'),
+              _ratingBar(_ratingBarMode),
+              SizedBox(
                 height: 10.0,
               ),
-              if(_selectedIndex==0)_rating != null
+              _rating != null
                   ? Text(
-                'คะแนน: $_rating',
+                'คะแนะ: $_rating',
                 style: TextStyle(fontWeight: FontWeight.bold),
               )
                   : Container(),
-              if(_selectedIndex==0)SizedBox(
+              SizedBox(
                 height: 40.0,
               ),
-              _heading('ข้อเสนอแนะ'),
-              if(_selectedIndex==0)SizedBox(
+              _heading('Rating Indicator'),
+              RatingBarIndicator(
+                rating: _userRating,
+                itemBuilder: (context, index) => Icon(
+                  _selectedIcon ?? Icons.star,
+                  color: Colors.amber,
+                ),
+                itemCount: 5,
+                itemSize: 50.0,
+                unratedColor: Colors.amber.withAlpha(50),
+                direction: _isVertical ? Axis.vertical : Axis.horizontal,
+              ),
+              SizedBox(
                 height: 20.0,
               ),
-              TextFormField(
-
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  //labelText:"ข้อเสนอแนะ",
-                  //contentPadding: EdgeInsets.fromLTRB( 8, 0,  8, 90.0),
-                  isDense: false,
-                 // suffixText:"demoTextFieldUSD",
-                ),
-                maxLines: 10,
-              ),
-              //if(_selectedIndex==0)_ratingBar(_ratingBarMode),
-
-
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    color: ArgonColors.red_mitsu),
-                child: FlatButton(
-                  child: Text(
-                    "ให้คะแนน",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: TextFormField(
+                  controller: _ratingController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter rating',
+                    labelText: 'Enter rating',
+                    suffixIcon: MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          _userRating =
+                              double.parse(_ratingController.text ?? '0.0');
+                        });
+                      },
+                      child: Text('Rate'),
+                    ),
                   ),
-                  onPressed: null,
-
                 ),
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              _heading('Scrollable Rating Indicator'),
+              RatingBarIndicator(
+                rating: 8.2,
+                itemCount: 20,
+                itemSize: 30.0,
+                physics: BouncingScrollPhysics(),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                'Rating Bar Modes',
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              Row(
+                children: [
+                  _radio(1),
+                  _radio(2),
+                  _radio(3),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Switch to Vertical Bar',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  Switch(
+                    value: _isVertical,
+                    onChanged: (value) {
+                      setState(() {
+                        _isVertical = value;
+                      });
+                    },
+                    activeColor: Colors.amber,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Switch to RTL Mode',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  Switch(
+                    value: _isRTLMode,
+                    onChanged: (value) {
+                      setState(() {
+                        _isRTLMode = value;
+                      });
+                    },
+                    activeColor: Colors.amber,
+                  ),
+                ],
               ),
             ],
           ),
         ),
       ),
-      /*bottomNavigationBar: FancyBottomNavigation(
-        tabs: [
-          TabData(iconData: Icons.star, title: "หมวด 1"),
-          TabData(iconData: FontAwesomeIcons.star, title: "หมวด 2"),
-          //TabData(iconData: Icons.accessibility_sharp, title: "Owner"),
-          TabData(iconData: Icons.star, title: "หมวด 3"),
-        ],
-        onTabChangedListener: (position) {
-          setState(() {
-            print(position);
-            _selectedIndex = position;
-          });
-        },
-        barBackgroundColor: ArgonColors.black,
-        activeIconColor: ArgonColors.red_mitsu ,
-        circleColor: Colors.white,
-        textColor: Colors.white,
-      )*/
     );
   }
   Widget _ratingBar(int mode) {
@@ -283,7 +313,7 @@ class _RatingState extends State<Rating2> {
         text,
         style: TextStyle(
           fontWeight: FontWeight.w300,
-          fontSize: 20.0,
+          fontSize: 24.0,
         ),
       ),
       SizedBox(

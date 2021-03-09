@@ -8,12 +8,9 @@ import 'package:mmth_flutter/screens/Message.dart';
 
 class ChatModel extends Model {
   List<User> users = [
-    User('IronMan', '111'),
-    User('Captain America', '222'),
-    User('Antman', '333'),
-    User('Hulk', '444'),
-    User('Thor', '555'),
-  ];
+    User('Techline', '111'),
+    User('Dealer', '222'),
+   ];
 
   User currentUser;
   List<User> friendList = List<User>();
@@ -27,7 +24,7 @@ class ChatModel extends Model {
     friendList =    users.where((user) => user.chatID != currentUser.chatID).toList();
     //print('http://192.168.97.164:8080');
     socketIO = SocketIOManager().createSocketIO(
-        'http://192.168.1.103:8080', '/',socketStatusCallback: _socketStatus);
+        'http://192.168.97.162:8080', '/',socketStatusCallback: _socketStatus);
     //'https://mmth-chat-nodejs.herokuapp.com', '/',socketStatusCallback: _socketStatus);
     socketIO.init();
     print('Init');

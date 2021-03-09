@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:mmth_flutter/constants/Theme.dart';
@@ -26,7 +27,7 @@ class ArgonDrawer extends StatelessWidget {
         Container(
             height: MediaQuery.of(context).size.height * 0.1,
             width: MediaQuery.of(context).size.width * 0.85,
-            child: SafeArea(
+            /*child: SafeArea(
               bottom: true,
               child: Align(
                 alignment: Alignment.bottomLeft,
@@ -37,7 +38,9 @@ class ArgonDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-            )),
+             )
+             */
+            ),
         Expanded(
           flex: 1,
           child: ListView(
@@ -49,11 +52,11 @@ class ArgonDrawer extends StatelessWidget {
                   if (currentPage != "Home")
                     Navigator.pushReplacementNamed(context, '/home');
                 },
-                iconColor: ArgonColors.primary,
+                iconColor: ArgonColors.red_mitsu,
                 title: "Home",
                 isSelected: currentPage == "Home" ? true : false,
               ),
-              DrawerTile(
+              /*DrawerTile(
                   icon: Icons.accessibility_new,
                   onTap: () {
                     if (currentPage != "Create Case")
@@ -62,8 +65,10 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: ArgonColors.primary,
                   title: "Create Case",
                   isSelected: currentPage == "Create Case" ? true : false),
+
+               */
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon: Icons.pie_chart,
                   onTap: () {
                     if (currentPage != "Dashboard")
                       Navigator.pushReplacementNamed(context, '/dashboard2');
@@ -74,22 +79,31 @@ class ArgonDrawer extends StatelessWidget {
               DrawerTile(
                   icon: Icons.pie_chart,
                   onTap: () {
-                    if (currentPage != "Create RO")
+                    if (currentPage != "สร้าง CASE")
                       Navigator.pushReplacementNamed(context, '/createro');
                   },
                   iconColor: ArgonColors.warning,
-                  title: "Create RO",
-                  isSelected: currentPage == "Create RO" ? true : false),
-              DrawerTile(
-                  icon: Icons.account_circle,
+                  title: "สร้าง CASE",
+                  isSelected: currentPage == "สร้าง CASE" ? true : false),
+              /*DrawerTile(
+                  icon: FontAwesomeIcons.search,
                   onTap: () {
-                    if (currentPage != "listro")
+                    if (currentPage != "RO Search")
                       Navigator.pushReplacementNamed(context, '/listro');
                   },
                   iconColor: ArgonColors.info,
-                  title: "listro",
-                  isSelected: currentPage == "listro" ? true : false),
+                  title: "RO Search",
+                  isSelected: currentPage == "RO Search" ? true : false),*/
               DrawerTile(
+                  icon: FontAwesomeIcons.peopleArrows,
+                  onTap: () {
+                    if (currentPage != "Case Search")
+                      Navigator.pushReplacementNamed(context, '/listcase');
+                  },
+                  iconColor: ArgonColors.red_mitsu,
+                  title: "Your Case",
+                  isSelected: currentPage == "Case Search" ? true : false),
+              /*DrawerTile(
                   icon: Icons.settings_input_component,
                   onTap: () {
                     if (currentPage != "FauxLoginPage")
@@ -106,9 +120,9 @@ class ArgonDrawer extends StatelessWidget {
                   },
                   iconColor: ArgonColors.primary,
                   title: "Articles",
-                  isSelected: currentPage == "Articles" ? true : false),
+                  isSelected: currentPage == "Articles" ? true : false),*/
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon:  FontAwesomeIcons.windows,
                   onTap: () {
                     if (currentPage != "login1")
                       Navigator.pushReplacementNamed(context, '/onboarding');
@@ -117,7 +131,7 @@ class ArgonDrawer extends StatelessWidget {
                   title: "login1",
                   isSelected: currentPage == "login1" ? true : false),
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon: FontAwesomeIcons.windows,
                   onTap: () {
                     if (currentPage != "login2")
                       Navigator.pushReplacementNamed(context, '/login2');
@@ -126,12 +140,12 @@ class ArgonDrawer extends StatelessWidget {
                   title: "login2",
                   isSelected: currentPage == "login2" ? true : false),
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon: FontAwesomeIcons.snapchat,
                   onTap: () {
                     if (currentPage != "ChatScreen")
                       Navigator.pushReplacementNamed(context, '/ChatScreen');
                   },
-                  iconColor: ArgonColors.primary,
+                  iconColor: ArgonColors.red_mitsu,
                   title: "ChatScreen",
                   isSelected: currentPage == "ChatScreen" ? true : false),
             /*  DrawerTile(
@@ -153,7 +167,7 @@ class ArgonDrawer extends StatelessWidget {
                   title: "Splash",
                   isSelected: currentPage == "List Case" ? true : false),*/
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon: FontAwesomeIcons.exchangeAlt,
                   onTap: () {
                     if (currentPage != "Settings")
                       Navigator.pushReplacementNamed(context, '/settings');
@@ -162,7 +176,7 @@ class ArgonDrawer extends StatelessWidget {
                   title: "Settings",
                   isSelected: currentPage == "Settings" ? true : false),
               DrawerTile(
-                  icon: Icons.accessibility_new,
+                  icon: FontAwesomeIcons.snapchat,
                   onTap: () {
                     if (currentPage != "ChatPage")
                       Navigator.pushReplacementNamed(context, '/ChatPage');
@@ -170,6 +184,24 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: ArgonColors.primary,
                   title: "ChatPage",
                   isSelected: currentPage == "ChatPage" ? true : false),
+              DrawerTile(
+                  icon: FontAwesomeIcons.pencilAlt,
+                  onTap: () {
+                    if (currentPage != "Rating")
+                      Navigator.pushReplacementNamed(context, '/rating');
+                  },
+                  iconColor: Colors.amber,
+                  title: "Rating",
+                  isSelected: currentPage == "Rating" ? true : false),
+              DrawerTile(
+                  icon: FontAwesomeIcons.pencilAlt,
+                  onTap: () {
+                    if (currentPage != "Splash")
+                      Navigator.pushReplacementNamed(context, '/splash');
+                  },
+                  iconColor: Colors.amber,
+                  title: "Splash",
+                  isSelected: currentPage == "Splash" ? true : false),
             ],
           ),
         ),

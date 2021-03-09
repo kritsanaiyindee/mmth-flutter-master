@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 /**
  * Author: Sudip Thapa
  * profile: https://github.com/sudeepthapa
@@ -53,7 +54,7 @@ class _LoginMitsu2State extends State<LoginMitsu2> {
     if (!form.validate()) {
       _autovalidate = true; // Start validating on every change.
       print("Error");
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/dashboard2');
       //showInSnackBar('Please fix the errors in red before submitting.');
     } else {
       form.save();
@@ -121,8 +122,32 @@ class _LoginMitsu2State extends State<LoginMitsu2> {
                         height: 20,
                       ),
                       Image.asset(
-                        "assets/img/mitsu_logo.png",
+                        "assets/img/mitsu_logo_login.png",
                         width: 200,
+                      ),
+                      SizedBox(
+                        //width: 250.0,
+                        child: ColorizeAnimatedTextKit(
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                          text: [
+                            "Drive your Ambition",
+                          ],
+                          textStyle: TextStyle(
+                              fontSize: 24.0,
+                              fontFamily: "Horizon",
+                              fontWeight: FontWeight.bold,
+                          ),
+                          colors: [
+                            ArgonColors.white,
+                            ArgonColors.nearWhite,
+                            ArgonColors.red_mitsu,
+                            ArgonColors.red_mitsu2,
+                          ],
+                          textAlign: TextAlign.start,
+                          isRepeatingAnimation: true,
+                        ),
                       ),
                       /*Text(
                         "Taste Me",
@@ -142,6 +167,7 @@ class _LoginMitsu2State extends State<LoginMitsu2> {
               ),
             ],
           ),
+
           SizedBox(
             height: 30,
           ),

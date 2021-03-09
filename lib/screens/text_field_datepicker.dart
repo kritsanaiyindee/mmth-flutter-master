@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mmth_flutter/constants/Theme.dart';
 
 class MyTextFieldDatePicker extends StatefulWidget {
   final ValueChanged<DateTime> onDateChanged;
@@ -72,6 +73,7 @@ class _MyTextFieldDatePicker extends State<MyTextFieldDatePicker> {
         suffixIcon: widget.suffixIcon,
         labelText: widget.labelText,
         contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+        fillColor: ArgonColors.red_mitsu,
       ),
       onTap: () => _selectDate(context),
       readOnly: true,
@@ -85,13 +87,32 @@ class _MyTextFieldDatePicker extends State<MyTextFieldDatePicker> {
   }
 
   Future<Null> _selectDate(BuildContext context) async {
+    /*final DateTime pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: widget.firstDate,
+      lastDate: widget.lastDate,
+
+    );*/
     final DateTime pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
       firstDate: widget.firstDate,
       lastDate: widget.lastDate,
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.red,
+              primaryColorDark: Colors.red,
+              accentColor: Colors.red,
+            ),
+            dialogBackgroundColor:Colors.white,
+          ),
+          child: child,
+        );
+      },
     );
-
     if (pickedDate != null && pickedDate != _selectedDate) {
       _selectedDate = pickedDate;
       _controllerDate.text = _dateFormat.format(_selectedDate);

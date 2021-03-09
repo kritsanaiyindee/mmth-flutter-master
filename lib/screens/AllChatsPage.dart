@@ -29,43 +29,42 @@ class _AllChatsPageState extends State<AllChatsPage> {
 
   void friendClicked(User friend) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-
-        return ChatPage(friend);
-      },
-    ),
-  );
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+          return ChatPage(friend);
+        },
+      ),
+    );
   }
 
   Widget buildAllChatList() {
-  return ScopedModelDescendant<ChatModel>(
-  builder: (context, child, model) {
-  return ListView.builder(
-  itemCount: model.friendList.length,
-  itemBuilder: (BuildContext context, int index) {
-  User friend = model.friendList[index];
-  return ListTile(
-  title: Text(friend.name),
-  onTap: () => friendClicked(friend),
-  );
-  },
-  );
-  },
-  );
+    return ScopedModelDescendant<ChatModel>(
+      builder: (context, child, model) {
+        return ListView.builder(
+        itemCount: model.friendList.length,
+        itemBuilder: (BuildContext context, int index) {
+        User friend = model.friendList[index];
+          return ListTile(
+            title: Text(friend.name),
+              onTap: () => friendClicked(friend),
+            );
+          },
+        );
+      },
+    );
   }
 
-  @override
-  Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: Navbar(
-      title: "Chat",
-      searchBar: false,
-    ),
-     backgroundColor: ArgonColors.bgColorScreen,
-    // key: _scaffoldKey,
-    drawer: ArgonDrawer(currentPage: "Chat"),
-      body: buildAllChatList(),
-      );
-  }
+    @override
+    Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: Navbar(
+        title: "Chat",
+        searchBar: false,
+      ),
+       backgroundColor: ArgonColors.bgColorScreen,
+      // key: _scaffoldKey,
+      drawer: ArgonDrawer(currentPage: "Chat"),
+        body: buildAllChatList(),
+        );
+    }
   }

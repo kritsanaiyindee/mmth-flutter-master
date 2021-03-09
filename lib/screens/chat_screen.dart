@@ -202,8 +202,6 @@ class _ChatScreenState extends State<ChatScreen> {
     addMessageToDb(_message);
   }
 
-
-
   Widget ChatMessagesListWidget() {
     print("SENDERUID : $_senderuid");
     return ScopedModelDescendant<ChatModel>(

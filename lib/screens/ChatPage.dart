@@ -14,7 +14,11 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController textEditingController = TextEditingController();
-
+  @override
+  void initState() {
+    super.initState();
+    ScopedModel.of<ChatModel>(context, rebuildOnChange: false).init();
+  }
   Widget buildSingleMessage(Message message) {
     return Container(
       alignment: message.senderID == widget.friend.chatID
@@ -52,7 +56,6 @@ class _ChatPageState extends State<ChatPage> {
   Widget buildChatArea() {
     return ScopedModelDescendant<ChatModel>(
       builder: (context, child, model) {
-
         return Container(
           child: Column(
             children: <Widget>[
@@ -102,8 +105,6 @@ class _ChatPageState extends State<ChatPage> {
       },
     );
   }
-
-
   Widget buildChatAreaDesign() {
     return ScopedModelDescendant<ChatModel>(
       builder: (context, child, model) {
@@ -162,9 +163,6 @@ class _ChatPageState extends State<ChatPage> {
       },
     );
   }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

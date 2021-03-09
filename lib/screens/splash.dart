@@ -76,6 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                           ),
+
                         ],
                       )),
                 ),

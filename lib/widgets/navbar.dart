@@ -76,7 +76,7 @@ class _NavbarState extends State<Navbar> {
                 ? (tagsExist ? 162.0 : 122.0)
                 : (tagsExist ? 200.0 : 150.0)),
         decoration: BoxDecoration(
-            color: !widget.transparent ? widget.bgColor : Colors.transparent,
+            color: !widget.transparent ? ArgonColors.black_mitsu : ArgonColors.black_mitsu,
             boxShadow: [
               BoxShadow(
                   color: !widget.transparent && !widget.noShadow
@@ -114,7 +114,7 @@ class _NavbarState extends State<Navbar> {
                               else
                                 Navigator.pop(context);
                             }),
-                        Text(widget.title,
+                        /*Text(widget.title,
                             style: TextStyle(
                                 color: !widget.transparent
                                     ? (widget.bgColor == ArgonColors.white
@@ -122,8 +122,22 @@ class _NavbarState extends State<Navbar> {
                                         : ArgonColors.white)
                                     : ArgonColors.white,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18.0)),
+                                fontSize: 18.0,
+                                )),
+
+                         */
+
                       ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          'assets/img/mitsu_logo.png',
+                          height: 45,
+                          width: 45,
+                        ),
+                        ]
                     ),
                     if (widget.rightOptions)
                       Row(
