@@ -8,7 +8,6 @@ import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'package:mmth_flutter/screens/ChatModel.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:mmth_flutter/screens/full_screen_image.dart';
 import 'package:mmth_flutter/constants/Theme.dart';
 
 //widgets
@@ -181,7 +180,7 @@ class _ChatScreenState extends State<ChatScreen> {
     map['timestamp'] = _message.timestamp;
     map['photoUrl'] = _message.photoUrl;
 
-    print("Map : ${map}");
+    //print("Map : ${map}");
 
   }
 

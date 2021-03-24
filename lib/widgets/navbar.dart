@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmth_flutter/ui/block_wrapper.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:mmth_flutter/constants/Theme.dart';
 
@@ -66,15 +67,16 @@ class _NavbarState extends State<Navbar> {
     final bool tagsExist =
         widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
 
-    return Container(
-        //height:100.0,
-        height: widget.searchBar
+    return //BlockWrapper(
+        Container(
+        height:200.0,
+        /*height: widget.searchBar
             ? (!categories
                 ? (tagsExist ? 211.0 : 178.0)
                 : (tagsExist ? 262.0 : 210.0))
             : (!categories
                 ? (tagsExist ? 162.0 : 122.0)
-                : (tagsExist ? 200.0 : 150.0)),
+                : (tagsExist ? 200.0 : 150.0)),*/
         decoration: BoxDecoration(
             color: !widget.transparent ? ArgonColors.black_mitsu : ArgonColors.black_mitsu,
             boxShadow: [
@@ -133,7 +135,7 @@ class _NavbarState extends State<Navbar> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Image.asset(
-                          'assets/img/mitsu_logo.png',
+                          'assets/img/mitsu_logo_login_notext.png',
                           height: 45,
                           width: 45,
                         ),
@@ -288,6 +290,8 @@ class _NavbarState extends State<Navbar> {
               ],
             ),
           ),
-        ));
+        )
+        //)
+    );
   }
 }

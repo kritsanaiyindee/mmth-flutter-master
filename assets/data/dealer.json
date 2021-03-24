@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+  "dealer_code": "100001",
+  "dealer_name": "Mitsubishi Dealer 1"
+},
+{
+  "dealer_code": "100002",
+  "dealer_name": "Mitsubishi Dealer 2"
+},
+{
+  "dealer_code": "100003",
+  "dealer_name": "Mitsubishi Dealer 3"
+
+}
+  ]
+}

@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:flutter_socket_io/flutter_socket_io.dart';
-import 'package:flutter_socket_io/socket_io_manager.dart';
+//import 'package:flutter_socket_io/flutter_socket_io.dart';
+//import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:intl/intl.dart';
 import 'package:mmth_flutter/screens/User.dart';
 import 'package:mmth_flutter/screens/Message.dart';
 
@@ -15,7 +14,7 @@ class ChatModel extends Model {
   User currentUser;
   List<User> friendList = List<User>();
   List<Message> messages = List<Message>();
-  SocketIO socketIO;
+  //SocketIO socketIO;
 
 
   void init() {
@@ -23,15 +22,15 @@ class ChatModel extends Model {
     currentUser = users[0];
     friendList =    users.where((user) => user.chatID != currentUser.chatID).toList();
     //print('http://192.168.97.164:8080');
-    socketIO = SocketIOManager().createSocketIO(
-        'http://192.168.97.162:8080', '/',socketStatusCallback: _socketStatus);
+    //socketIO = SocketIOManager().createSocketIO(
+        //'http://192.168.97.162:8080', '/',socketStatusCallback: _socketStatus);
     //'https://mmth-chat-nodejs.herokuapp.com', '/',socketStatusCallback: _socketStatus);
-    socketIO.init();
+   // socketIO.init();
     print('Init');
-    socketIO.subscribe("typing", _onReceiveChatMessage);
+   // socketIO.subscribe("typing", _onReceiveChatMessage);
 
 
-
+/*
     socketIO.sendMessage(
       'change_username',
       json.encode({
@@ -52,6 +51,8 @@ class ChatModel extends Model {
 
     socketIO.connect();
     print('connect');
+
+ */
   }
   _socketStatus(dynamic data) {
     print("Socket statusxxxxxxxxxxxxxxxxxxxxxxx: " + data);
@@ -70,6 +71,7 @@ class ChatModel extends Model {
   void typingMessage(String name) {
     print('');
     //messages.add(Message(text, currentUser.chatID, receiverChatID));
+    /*
     socketIO.sendMessage(
       'typing',
       json.encode({
@@ -77,9 +79,12 @@ class ChatModel extends Model {
       }),
     );
     notifyListeners();
+
+     */
   }
 
   void sendMessage(String text, String receiverChatID) {
+    /*
     DateTime now = DateTime.now();
     messages.add(Message(text, currentUser.chatID, receiverChatID,now));
     socketIO.sendMessage(
@@ -91,9 +96,11 @@ class ChatModel extends Model {
       }),
     );
     notifyListeners();
+
+     */
   }
   void joinChatRoom(String nickName) {
-
+/*
     socketIO.sendMessage(
       'change_username',
       json.encode({
@@ -101,6 +108,8 @@ class ChatModel extends Model {
       }),
     );
     notifyListeners();
+
+ */
   }
   List<Message> getMessagesForChatID(String chatID) {
     return messages

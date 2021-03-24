@@ -15,7 +15,7 @@ import 'package:intl/intl.dart';
 
 
 class HomeMitsu extends StatefulWidget {
-  static final String path = "lib/screens/login_mitsu.dart";
+  //static final String path = "lib/screens/login_mitsu.dart";
   @override
   _HomeMitsuState createState() => _HomeMitsuState();
 }

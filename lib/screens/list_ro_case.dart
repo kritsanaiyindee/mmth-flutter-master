@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mmth_flutter/constants/Theme.dart';
+import 'package:mmth_flutter/ui/block_wrapper.dart';
 import 'package:mmth_flutter/widgets/drawer.dart';
 import 'package:mmth_flutter/widgets/navbar.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -82,7 +83,8 @@ class _CaseListeState extends State<CaseROList> {
       ),
       backgroundColor: ArgonColors.bgColorScreen,
       drawer: ArgonDrawer(currentPage: "Create Case"),
-      body: new Column(
+      body:BlockWrapper(
+          new Column(
         children: <Widget>[
           new Container(
             color: ArgonColors.black,
@@ -144,6 +146,7 @@ class _CaseListeState extends State<CaseROList> {
             ),
           ),
         ],
+      )
       ),
     );
   }
@@ -231,8 +234,8 @@ class _CaseListeState extends State<CaseROList> {
 
         IconSlideAction(
           caption: 'Close Case',
-          color: Colors.grey.shade200,
-          icon: FontAwesomeIcons.solidEnvelope,
+          color: Colors.red,
+          icon: FontAwesomeIcons.timesCircle,
           onTap: () => {
             //print('ปิดเคส');
             _showSnackBar(context, 'ปิดเคส')
@@ -240,8 +243,8 @@ class _CaseListeState extends State<CaseROList> {
           closeOnTap: false,
         ),
         IconSlideAction(
-          caption: 'รายละเอียด',
-          color: Colors.red,
+          caption: 'Info',
+          color: Colors.green,
           icon:FontAwesomeIcons.info,
           onTap: () => _showSnackBar(context, 'รายละเอียด'),
         ),
@@ -392,17 +395,14 @@ class _CaseListeState extends State<CaseROList> {
   }
 
   static Color _getAvatarColor(int index) {
-    switch (index % 1) {
+    switch (index % 5) {
       case 0:
         return Colors.red;
       case 1:
         return Colors.green;
-      case 2:
-        return Colors.blue;
-      case 3:
-        return Colors.indigoAccent;
+
       default:
-        return null;
+        return Colors.green;
     }
   }
 
@@ -461,8 +461,9 @@ class HorizontalListItem extends StatelessWidget {
           Expanded(
             child: CircleAvatar(
               backgroundColor: item.color,
-              child: Text('${item.index}'),
+              child: Text(''),
               foregroundColor: Colors.white,
+              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
             ),
           ),
           Expanded(
@@ -494,8 +495,14 @@ class VerticalListItem extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             backgroundColor: item.color,
-            child: Text('${item.index}'),
+            child: Text(''),
+           // child: Text('${item.index}'),
             foregroundColor: Colors.white,
+            backgroundImage: AssetImage(
+              "assets/img/incident.png",
+
+            ),
+           // backgroundImage: NetworkImage('https://via.placeholder.com/150'),
           ),
           title: Text(item.title),
           subtitle: Text(item.subtitle),

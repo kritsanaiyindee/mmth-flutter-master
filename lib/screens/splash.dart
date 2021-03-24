@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:mmth_flutter/screens/login_mitsu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mmth_flutter/constants/Theme.dart';
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   String _username = "";
   String _versionName = 'V0.1.1';
-  final splashDelay = 8;
+  final splashDelay = 2;
 
   @override
   void initState() {
@@ -40,7 +41,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigationPage() {
    // _loadUserInfo();
     if (_username == "") {
-      Navigator.pushReplacementNamed(context, '/login2');
+      //Navigator.pushReplacementNamed(context, '/passcode');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => LoginMitsu2()));
+
       print("Please sign in");
     } else {
       Navigator.pushReplacementNamed(context, '/home');

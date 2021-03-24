@@ -85,15 +85,15 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: ArgonColors.warning,
                   title: "สร้าง CASE",
                   isSelected: currentPage == "สร้าง CASE" ? true : false),
-              /*DrawerTile(
+              DrawerTile(
                   icon: FontAwesomeIcons.search,
                   onTap: () {
-                    if (currentPage != "RO Search")
-                      Navigator.pushReplacementNamed(context, '/listro');
+                    if (currentPage != "KM Search")
+                      Navigator.pushReplacementNamed(context, '/listkm');
                   },
                   iconColor: ArgonColors.info,
-                  title: "RO Search",
-                  isSelected: currentPage == "RO Search" ? true : false),*/
+                  title: "KM Search",
+                  isSelected: currentPage == "KM Search" ? true : false),
               DrawerTile(
                   icon: FontAwesomeIcons.peopleArrows,
                   onTap: () {
@@ -202,6 +202,26 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: Colors.amber,
                   title: "Splash",
                   isSelected: currentPage == "Splash" ? true : false),
+              DrawerTile(
+                  icon: FontAwesomeIcons.pencilAlt,
+                  onTap: () {
+                    if (currentPage != "imagepcik")
+                      Navigator.pushReplacementNamed(context, '/imagepcik');
+                  },
+                  iconColor: Colors.amber,
+                  title: "imagepcik",
+                  isSelected: currentPage == "Splash" ? true : false),
+              DrawerTile(
+                  icon: FontAwesomeIcons.pencilAlt,
+                  onTap: () {
+                    if (currentPage != "firebasechat")
+                      Navigator.pushReplacementNamed(context, '/firebasechat');
+                  },
+                  iconColor: Colors.amber,
+                  title: "firebasechat",
+                  isSelected: currentPage == "Splash" ? true : false),
+
+
             ],
           ),
         ),

@@ -8,7 +8,12 @@ import 'package:mmth_flutter/screens/ChatPage.dart';
 import 'package:mmth_flutter/screens/Message.dart';
 import 'package:mmth_flutter/screens/User.dart';
 import 'package:mmth_flutter/screens/rating.dart';
+import 'package:mmth_flutter/screens/page1.dart';
+import 'package:mmth_flutter/screens/page2.dart';
+import 'package:mmth_flutter/screens/page3.dart';
+import 'package:mmth_flutter/screens/page4.dart';
 import 'package:mmth_flutter/screens/text_field_datepicker.dart';
+import 'package:mmth_flutter/ui/block_wrapper.dart';
 import 'package:mmth_flutter/widgets/bottomNavigation.dart';
 
 import 'package:flutter/material.dart';
@@ -120,7 +125,37 @@ class _PasswordFieldState extends State<PasswordField> {
 
 class ROCreateFormState extends State<ROCreateForm> {
   PersonData person = PersonData();
+  final List<Widget> _children = [
+    Page1(),
+    Page2(),
+    ChatScreen1(),
+    Page3(),
+
+  ];
+
+  final List<BottomNavigationBarItem> _childrenBottom = [
+    new BottomNavigationBarItem(
+      icon: Icon(Icons.add,color: ArgonColors.red_mitsu2,),
+      title: Text('RO Detail'),
+    ),
+  /*  new BottomNavigationBarItem(
+      icon: Icon(FontAwesomeIcons.pen,color: ArgonColors.red_mitsu2,),
+      title: Text('Case'),
+    ),
+    new BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.star,color: ArgonColors.red_mitsu2,),
+        title: Text('Rating')
+    ),
+    new BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.rocketchat,color: ArgonColors.red_mitsu2,),
+        title: Text('Chat')
+    )*/
+  ];
+
+
+
   String _chosenValue;
+
   void showInSnackBar(String value) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -208,7 +243,7 @@ class ROCreateFormState extends State<ROCreateForm> {
     }
     return null;
   }
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -254,796 +289,32 @@ class ROCreateFormState extends State<ROCreateForm> {
     const sizedBoxSpace = SizedBox(height: 16);
     //ScopedModel.of<ChatModel>(context, rebuildOnChange: false).init();
     //print('_selectedIndex==%_selectedIndex');
-    print(_selectedIndex);
+    //print(_selectedIndex);
     setState(() {
-      print('setState');
+      //print('setState');
      // _selectedIndex = 0;
-      print(_selectedIndex);
+      //print(_selectedIndex);
     });
     return
 
 
       Scaffold(
-          extendBodyBehindAppBar: true,
+          /*extendBodyBehindAppBar: true,
           appBar: Navbar(
             title: "Create Case",
             transparent: false,
 
           ),
           backgroundColor: ArgonColors.bgColorScreen,
-          drawer: ArgonDrawer(currentPage: "Create Case"),
-          body: Form(
-            key: _formKey,
-            autovalidateMode: _autoValidateMode,
-
-            child: //if(_selectedIndex == 0||if(_selectedIndex == 1):
-              Scrollbar(
-              child: SingleChildScrollView(
-                dragStartBehavior: DragStartBehavior.down,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 110),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    sizedBoxSpace,
-                    //ProductCarousel(imgArray: articlesCards["Music"]["products"]),
-                    if(_selectedIndex == 0)Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child:
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          labelText: "RO Number",
-                          prefixIcon: Icon(FontAwesomeIcons.searchPlus),
-
-                        ),
-                        maxLines: 1,
-
-                      ),
-                      /*Input(
-                  labelText: "RO Number",
-                  placeholder: "ระบุ RO Number",
-                  prefixIcon: Icon(Icons.subject),
-                ),*/
-                    ),
-                    sizedBoxSpace,
-                    if(_selectedIndex == 0)
-                      Text(
-                        "รายละเอียด RO",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    if(_selectedIndex == 0)
-                      Card(
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.all(25),
-                          child: Column(
-                            children: <Widget>[
-                              Column(
-
-
-                                children: <Widget>[
-                                  ...ListTile.divideTiles(
-                                    color: Colors.grey,
-                                    tiles: [
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("RO Date",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("13/03/2021",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("ประเภทงาน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("งาน 1",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("วันที่ลูกค้าต้องการ",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("13/03/2021",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("สถานะงาน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("Active",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("วันรับประกัน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("13/03/2021",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          sizedBoxSpace,
-                                          Column(
-                                            children: [
-                                              Text("วันสิ้นสุด",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("Active",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-
-                    if(_selectedIndex == 0)
-                      Text(
-                        "รายละเอียดรถ",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    if(_selectedIndex == 0)
-                      Card(
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.all(25),
-                          child: Column(
-                            children: <Widget>[
-
-
-                              Column(
-
-
-                                children: <Widget>[
-                                  ...ListTile.divideTiles(
-                                    color: Colors.grey,
-                                    tiles: [
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("เลขตัวถัง",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("MX1234",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("เลขเครื่องยนต์",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("MX1234567890",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("รุ่นต้นแบบ",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("Y",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("เลขทะเบียน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("กพ 1094  ชลบุรี",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("รหัสรถ",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("MX1234567890",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    if(_selectedIndex == 0)
-                      Text(
-                        "ข้อมูลผู้ใช้งาน",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    if(_selectedIndex == 0)
-                      Card(
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.all(25),
-                          child: Column(
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  ...ListTile.divideTiles(
-                                    color: Colors.grey,
-                                    tiles: [
-                                      Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                Text("เลขบัตรประชาชน",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                        FontWeight.bold)),
-                                                Text("3200100640666",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            ),
-                                          ]), Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("ชื่อลูกค้า",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("กฤษนัย ยินดีสุข",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                          Column(
-                                            children: [
-                                              Text("ประเภทลูกค้า",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("บุคคล",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("ที่อยู่",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text(
-                                                  "63 หมู่ 8 ตำบลนาป่า อ เมือง จ ชลบุรี",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("รหัสไปรษณีย์",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("20000",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text("จังหวัด",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("ชลบุรี",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("เบอร์โทรศัพท์",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("0618515533",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    if(_selectedIndex == 0)
-                      Text(
-                        "รายละเอียดการสั่งซ่อม",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    if(_selectedIndex == 0)
-                      Card(
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.all(25),
-                          child: Column(
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  ...ListTile.divideTiles(
-                                    color: Colors.grey,
-                                    tiles: [
-                                      Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                Text("รหัสสั่งซ่อม",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                        FontWeight.bold)),
-                                                Text("FX11111",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            ), Column(
-                                              children: [
-                                                Text("คำสั่งซ่อม",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                        FontWeight.bold)),
-                                                Text("xxxxx",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            ),
-                                          ]), Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-
-
-                                          Column(
-                                            children: [
-                                              Text("ประเภทสั่งซ่อม",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("ด่วน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ), Column(
-                                            children: [
-                                              Text("โค้ดปฏิบัติงาน",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("ปปปปปปป",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-
-                                          Column(
-                                            children: [
-                                              Text("รายการ",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("20000",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text("ประเภทการจ่าย",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          82, 95, 127, 1),
-                                                      fontSize: 20.0,
-                                                      fontWeight:
-                                                      FontWeight.bold)),
-                                              Text("ปปปปปป",
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          50, 50, 93, 1),
-                                                      fontSize: 12.0))
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                        ],
-                                      ),
-
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    if(_selectedIndex == 1)
-                      Text(
-                        "สร้าง Case",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    if(_selectedIndex == 1)
-                      sizedBoxSpace,
-                    if(_selectedIndex == 1) TextFormField(
-                      initialValue: "Tech-Line",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "Channel",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.pen,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "Mitsubishi Vipawadee",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "Dealer",
-                        suffixIcon: Icon(FontAwesomeIcons.searchPlus),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "ปัญหาท่อไอเสีย",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "Title",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "Inquiry",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "ประเภท",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "Tech-Line",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "กลุ่ม",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "หัวข้อ",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-
-                    if(_selectedIndex == 1)sizedBoxSpace,
-                    if(_selectedIndex == 1)TextFormField(
-                      initialValue: "Kritsanai",
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: "Owner",
-                        suffixIcon: Icon(FontAwesomeIcons.pen),
-                        //suffixIcon: FontAwesomeIcons.search,
-                        //suffixText:"demoTextFieldUSD",
-                      ),
-                      maxLines: 1,
-                    ),
-
-                    if(_selectedIndex == 1) sizedBoxSpace,
-                    //if(_selectedIndex == 2)buildChatList(),
-                    //if(_selectedIndex == 2)buildChatArea(),
-                    if(_selectedIndex == 1) Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          color: ArgonColors.red_mitsu),
-                      child: FlatButton(
-                        child: Text(
-                          "สร้าง",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: _handleSubmitted,
-
-                      ),
-                    ),
-                    //if(_selectedIndex == 3) ChatScreen(),
-                    //if(_selectedIndex == 3)ChatScr(),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          drawer: ArgonDrawer(currentPage: "Create Case"),*/
+          body: _children[_selectedIndex],
 
           bottomNavigationBar: BottomNavigationBar(
             onTap: onTabTapped, // new
             //initialSelection: 0,
             backgroundColor: ArgonColors.black_mitsu,
             unselectedItemColor: Colors.green,
-            selectedItemColor: Colors.yellow,
+            selectedItemColor: Colors.black,
             currentIndex: _selectedIndex, //
             items: [
               new BottomNavigationBarItem(
@@ -1052,20 +323,46 @@ class ROCreateFormState extends State<ROCreateForm> {
               ),
               new BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.pen,color: ArgonColors.red_mitsu2,),
-                title: Text('Messages'),
-              ),
-              new BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.star,color: ArgonColors.red_mitsu2,),
-                  title: Text('Profile')
+                title: Text('Case'),
               ),
               new BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.rocketchat,color: ArgonColors.red_mitsu2,),
                   title: Text('Chat')
-              )
+              ),
+              new BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.star,color: ArgonColors.red_mitsu2,),
+                  title: Text('Rating')
+              ),
+
             ],
 
           ),
-           /* barBackgroundColor: ArgonColors.black,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: Visibility(
+            visible: (_selectedIndex==1||_selectedIndex==3), // set it to false
+            child:  FloatingActionButton(
+              splashColor: ArgonColors.black_mitsu,
+              foregroundColor: ArgonColors.red_mitsu2,
+              focusColor: ArgonColors.red_mitsu2,
+              backgroundColor: ArgonColors.red_mitsu2,
+                onPressed:(){
+                //_incrementTab(1);
+                },
+                tooltip: 'Increment',
+    child:CircleAvatar(
+    //color: Colors.black,
+    backgroundColor: Colors.red,
+    child: new IconButton(
+    icon: new Icon(Icons.save,color: Colors.white,),
+    onPressed:() {
+    //Navigator.pushReplacementNamed(context, '/createcase');
+    }),
+    )
+            ), // visible if showShould is true
+
+          )
+
+        /* barBackgroundColor: ArgonColors.black,
             activeIconColor: ArgonColors.red_mitsu,
             circleColor: Colors.white,
             textColor: Colors.white,
@@ -1077,21 +374,6 @@ class ROCreateFormState extends State<ROCreateForm> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-  _navigateAndDisplaySelection(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Page1()),
-    );
-    setState(() {
-      //print(position);
-      _selectedIndex = 0;
-    });
-    // After the Selection Screen returns a result, hide any previous snackbars
-    // and show the new result.
-    //ScaffoldMessenger.of(context)
-      //..removeCurrentSnackBar()
-      //..showSnackBar(SnackBar(content: Text("$result")));
   }
 
   Widget buildSingleMessage(Message message) {
@@ -1275,46 +557,6 @@ class _UsNumberTextInputFormatter extends TextInputFormatter {
       selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
-}
-class Page1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title:Text("Stateless Page"),
-        backgroundColor: Colors.redAccent,),
-      body: WillPopScope( //WillPopScope will replace the default
-        //"Mobile Back Button" and "Appbar Back button" action
-          onWillPop: (){
-            //on Back button press, you can use WillPopScope for another purpose also.
-            Navigator.pop(context,0); //return data along with pop
-            return new Future(() => false); //onWillPop is Future<bool> so return false
-          },
-          child: Container(
-              height:300,
-              child: Center(
-                  child: RaisedButton(
-                    onPressed: (){
-                      Navigator.pop(context, "Raised Button data");
-                      //go back along with data
-                    },
-                    child: Text("Go Back"),
-                  )
-              )
-          )
-      ),
-    );
-  }
-
-  void _onBackPressed() {
-    // Called when the user either presses the back arrow in the AppBar or
-    // the dedicated back button.
-  }
-
-
-}
-class Page2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: Text('Page2')));
 }
 
 

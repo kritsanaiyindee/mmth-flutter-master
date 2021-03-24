@@ -1,11 +1,9 @@
 import 'package:mmth_flutter/screens/AllChatsPage.dart';
 import 'package:mmth_flutter/screens/ChatModel.dart';
-import 'package:mmth_flutter/screens/FauxLoginPage.dart';
 import 'package:mmth_flutter/screens/chat_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:mmth_flutter/screens/login_mitsu.dart';
 import 'package:mmth_flutter/screens/splash.dart';
-import 'package:mmth_flutter/service/user_list.dart';
 import 'package:flutter/material.dart';
 
 // screens
