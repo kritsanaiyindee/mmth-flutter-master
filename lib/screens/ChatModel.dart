@@ -17,6 +17,10 @@ class ChatModel extends Model {
   //SocketIO socketIO;
 
 
+
+
+
+
   void init() {
     print('initClicked');
     currentUser = users[0];
